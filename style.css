@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    background: linear-gradient(30deg,rgb(248, 182, 138), rgb(56, 146, 124));
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul>li {
+    list-style: none;
+}
+
+.container {
+    max-width: 1070px;
+    margin: 0 auto;
+    
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    background-color: rgb(199, 156, 126);
+    padding: 0 15px 0 15px;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 15px;
+}
+
+/* Блок добавления задачи (поле и кнопка) */
+.add-block {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.514);
+    flex-basis: 450px;
+    border: 3px solid rgb(44, 25, 0);
+}
+
+/* Поле ввода */
+#taskInput {
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    flex: 1 1 450px;
+}
+
+/* Плейсхолдер */
+#taskInput::placeholder {
+    color: rgba(128, 128, 128, 0.384);
+}
+
+/* Кнопка добавления задачи */
+#addBtn {
+    border: none;
+    background-color: rgb(125, 197, 179);
+    width: 40px;
+}
+.fa-regular, .fa-square-plus{
+    font-size: 23px;
+}
+/* Список задач */
+
+#list {
+    margin: 0 auto;
+    max-width: 450px;
+}
+
+/* Элемент списка */
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.514);
+    background-color: rgb(199, 156, 126);
+    font-size: 30px;
+    padding: 7px;
+    border: 3px solid rgb(255, 255, 255);
+    color: rgb(44, 25, 0);
+}
+
+/* Запретить ужиматься блоку с кнопками в элементе списка*/
+.item__btns {
+    flex-shrink: 0;
+}
+
+
+/* Символ корзины */
+.fa-trash-can {
+    color: rgb(197, 10, 4);
+}
+
+/* Символ чекбокса */
+.fa-square-check {
+    margin-right: 20px;
+    color: rgb(23, 116, 31);
+}
+
+/* Поведение элемента списка если добавлен класс .done */
+.item.done {
+    text-decoration: line-through;
+}
