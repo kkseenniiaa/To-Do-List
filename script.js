@@ -2,8 +2,9 @@ let taskInput = document.querySelector('#taskInput');
 let addBtn = document.querySelector('#addBtn');
 let list = document.querySelector('#list');
 let tasks = [];
-if (localStorage.getItem('htmlsLs')) {
-    list.innerHTML = localStorage.getItem('htmlLs');
+
+if (localStorage.getItem('tasksLs')) {
+    tasks = JSON.parse(localStorage.getItem('tasksLs'));
 }
 
 addBtn.addEventListener('click', function () {
@@ -29,25 +30,15 @@ function addTask(elem) {
     deleteBtn.className = 'fa-solid fa-trash-can';
     itemBtns.append(deleteBtn);
     deleteBtn.setAttribute('data-action', 'delete');
-}
 
-let newTask = {
-    id: Date.now(),
-    text: taskInput.value,
-    complete: false
-}
+    let newTask = {
+        id: Date.now(),
+        text: taskInput.value,
+        complete: false
+    }
 
-function completeBtn(target) {
-    target.closest('li').classList.toggle('done');
-    localStorage.setItem('htmlsLs', list.innerHTML);
-}
-
-function removeTask(target) {
-    target.closest('li').remove();
-    taskInput.value = '';
-    let index = tasks.findIndex((task) => {
-        return task.id == target.closest('li').id
-    });
+    tasks.push(newTask);
+    elem.setAttribute('id', newTask.id);
 }
 
 list.addEventListener('click', (event) => {
@@ -57,5 +48,28 @@ list.addEventListener('click', (event) => {
     };
     if (target.dataset.action == 'delete') {
         removeTask(target);
-    };
+    }
 })
+
+function completeBtn(target) {
+    target.closest('li').classList.toggle('done');
+    let currentId = target.closest('li').id;
+    let index = tasks.findIndex((task) => {
+        return task.id == currentId;
+    });
+    if (tasks[index].complete == false) {
+        tasks[index].complete == true;
+    }
+    else {
+        tasks[index].complete == false;
+    }
+}
+
+function removeTask(target) {
+    target.closest('li').remove();
+    taskInput.value = '';
+    let index = tasks.findIndex((task) => {
+        return task.id == target.closest('li').id
+    });
+    tasks.splice(index, 1);
+}
